@@ -3,6 +3,7 @@ package mybatis;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,12 +52,20 @@ public class FirstMybatis {
 			List<Map<String, Object>> exeuteResult = mapper.executeSQL(param);
 			System.out.println(exeuteResult.get(0).get("id"));
 
-			// 3. using annotation
+			//2.3. using annotation
 			param.clear();
 			param.put("id", 2);
 			Map<String, Object> result = mapper.testAnnotation(param);
 			System.out.println(result.get("id"));
 
+			//2.4. using list param
+			param.clear();
+			List<String> idList = new ArrayList<String>();
+			idList.add("1");
+			idList.add("2");
+			param.put("idList", idList);
+			List<Map<String,Object>> users = mapper.queryByList(param);
+			System.out.println(users.get(1).get("id"));
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {

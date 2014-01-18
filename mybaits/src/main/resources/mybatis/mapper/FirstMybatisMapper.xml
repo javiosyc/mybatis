@@ -15,5 +15,13 @@
     <!-- param using ${} -->
       <select id="executeSQL" parameterType="map" resultType="map">
 		${sql}
-    </select>    
+    </select>
+    
+    <select id="queryByList" parameterType="map" resultType="map">
+    	select * 
+    	From user where id in
+    	<foreach collection="idList" item="userID" open="(" separator="," close=")">
+    	 #{userID}
+    	</foreach>
+    </select>
 </mapper>    

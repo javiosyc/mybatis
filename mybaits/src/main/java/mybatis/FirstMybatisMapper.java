@@ -13,4 +13,6 @@ public interface FirstMybatisMapper {
 	
 	@Select("Select * from user where id = #{id}")
 	public Map<String,Object> testAnnotation(Map<String,Object> param);
+	
+	public List<Map<String,Object>> queryByList(Map<String,Object>param);
 }
